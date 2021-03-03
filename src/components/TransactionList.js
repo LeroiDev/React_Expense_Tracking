@@ -1,13 +1,20 @@
-import React from 'react'
+import React,{useContext} from 'react';
+import Transaction from './Transaction';
+import {GlobalContext} from '../context/GlobalState';
+
+//context destructured and a sperate component created to loop over 
+//transactions 
 
 const TransactionList = () => {
+  const {transactions} = useContext(GlobalContext);
+
   return (
     <>
      <h3>History</h3> 
      <ul id="list" className="list">
-       <li className="minus">
-         Cash <span>-R400</span><button className="delete-btn">X</button>
-       </li>
+       {transactions.map(transaction =>(
+          <Transaction transaction={transaction}/>
+       ))}
      </ul>
     </>
   )
